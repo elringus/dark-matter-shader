@@ -1,32 +1,32 @@
 ﻿Shader "DarkMatter" 
 {
-    Properties 
+	Properties 
 	{
-        _NoiseTex ("Noise Texture (RG)", 2D) = "white" {}
-        _Strength ("Distortion strength", Range(0.1, 1)) = 0.2
-        _Transparency ("Transparency", Range(0.01, 0.1)) = 0.05
-    }
-     
-    SubShader 
+		_NoiseTex ("Noise Texture (RG)", 2D) = "white" {}
+		_Strength ("Distortion strength", Range(0.1, 1)) = 0.2
+		_Transparency ("Transparency", Range(0.01, 0.1)) = 0.05
+	}
+	 
+	SubShader 
 	{
 		Tags { "Queue" = "Transparent+1" }
 		
-        GrabPass 
+		GrabPass 
 		{
-            Name "BASE"
-            Tags { "LightMode" = "Always" }
-        }
-       
-        Pass 
+			Name "BASE"
+			Tags { "LightMode" = "Always" }
+		}
+	   
+		Pass 
 		{
-            Name "BASE"
-            Tags { "LightMode" = "Always" }
-            Lighting Off
-            ZWrite On
-            ZTest LEqual
-            Blend SrcAlpha OneMinusSrcAlpha
-            AlphaTest Greater 0
-         
+			Name "BASE"
+			Tags { "LightMode" = "Always" }
+			Lighting Off
+			ZWrite On
+			ZTest LEqual
+			Blend SrcAlpha OneMinusSrcAlpha
+			AlphaTest Greater 0
+		 
 			CGPROGRAM
 			#pragma vertex ComputeVertex
 			#pragma fragment ComputeFragment
@@ -115,6 +115,6 @@
 			}
  
 			ENDCG
-        }
-    }
+		}
+	}
 }
