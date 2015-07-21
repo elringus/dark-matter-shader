@@ -2,7 +2,7 @@
 {
 	Properties 
 	{
-		_NoiseTex ("Noise Texture (RG)", 2D) = "white" {}
+		_NoiseTex ("Noise texture (RG)", 2D) = "white" {}
 		_Strength ("Distortion strength", Range(0.1, 1)) = 0.2
 		_Transparency ("Transparency", Range(0.01, 0.1)) = 0.05
 	}
@@ -28,6 +28,7 @@
 			AlphaTest Greater 0
 		 
 			CGPROGRAM
+
 			#pragma vertex ComputeVertex
 			#pragma fragment ComputeFragment
 			#pragma fragmentoption ARB_precision_hint_fastest
@@ -57,7 +58,7 @@
 			
 			fixed4 Overlay (fixed4 a, fixed4 b) 
 			{
-				fixed4 r = a > .5 ? 1.0 - 2.0 * (1.0 - a) * (1.0 - b) : 2.0 * a * b;
+				fixed4 r = a > 0.5 ? 1.0 - 2.0 * (1.0 - a) * (1.0 - b) : 2.0 * a * b;
 				r.a = b.a;
 				return r;
 			}
@@ -84,7 +85,7 @@
 				screenPos.x = (screenPos.x + 1) * 0.5; 
 				screenPos.y = (screenPos.y + 1) * 0.5; 
  
-				// check if anti aliasing is used
+				// check if anti-aliasing is used
 				if (_ProjectionParams.x < 0)
 					screenPos.y = 1 - screenPos.y;
    
